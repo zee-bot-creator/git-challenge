@@ -1,0 +1,167 @@
+body {
+  background: #e4f4fa;
+}
+
+h1,
+h2,
+i.fas.fa-search,
+p.currentForecast,
+p.humidity,
+p.wind,
+.time {
+  color: #ffffff;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+h2 {
+  font-size: 80px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+section.subheader {
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 15px;
+  position: relative;
+  text-align: center;
+}
+
+div.card.app-wrapper {
+  background-color: #2b619c;
+  border: none;
+  border-radius: 12px;
+  margin: 30px auto;
+  padding: 30px 26px;
+  width: 618px;
+}
+
+div.card-body {
+  background-color: #ffffff;
+  width: -50px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+div.celFahrenheit {
+  color: #2b2b2b;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+div.icon {
+  position: relative;
+  display: block;
+  font-size: 23px;
+  margin: 10px;
+}
+
+div.tempForecast {
+  color: #1b4de4;
+  display: block;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+h5.card-title {
+  color: #2b2b2b;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+i.fas.fa-cloud {
+  color: #ffffff;
+  font-size: 100px;
+}
+
+i.fas.fa-cloud-sun-rain {
+  font-size: 23px;
+}
+
+i.fas.fa-cloud-showers-heavy {
+  color: black;
+}
+
+i.fas.fa-snowflake {
+  color: #abf0ff;
+}
+
+i.fas.fa-cloud-sun {
+  font-size: 23px;
+}
+
+i.fas.fa-sun {
+  color: #ffcc33;
+}
+
+i.fas.fa-search {
+  font-size: 34px;
+  text-align: right;
+}
+
+p.currentForecast {
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 15px;
+  position: relative;
+  text-align: right;
+  text-transform: capitalize;
+}
+
+p.humidity,
+p.wind {
+  font-size: 17px;
+  line-height: 20px;
+  position: relative;
+  text-align: right;
+}
+
+p.humidity {
+  padding-right: 108px;
+  line-height: 5px;
+}
+
+p.wind {
+  padding-right: 111px;
+}
+
+.magnifier-icon {
+  background: none;
+  border: none;
+}
+
+.time {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 27px;
+}
+
+.units {
+  display: inherit;
+  margin-top: 22px;
+}
+
+#clickableAwesomeFont {
+  cursor: pointer;
+}
+
+#celsius-link,
+#fahrenheit-link {
+  color: #ffffff;
+  font-size: 18px;
+}
