@@ -5,10 +5,10 @@ body {
 h1,
 h2,
 i.fas.fa-search,
-p.currentForecast,
 p.humidity,
 p.wind,
-.time {
+.time,
+#conditions {
   color: #ffffff;
 }
 
@@ -39,13 +39,16 @@ section.subheader {
   text-align: center;
 }
 
-div.card.app-wrapper {
+div.weather.app-wrapper {
+  margin: 30px auto;
+  width: 618px;
+}
+
+div.weather-app {
   background-color: #2b619c;
   border: none;
   border-radius: 12px;
-  margin: 30px auto;
   padding: 30px 26px;
-  width: 618px;
 }
 
 div.card-body {
@@ -114,12 +117,15 @@ i.fas.fa-search {
   text-align: right;
 }
 
-p.currentForecast {
+#conditions {
   font-size: 35px;
   font-weight: 500;
   line-height: 15px;
   position: relative;
   text-align: right;
+}
+
+#conditions:first-letter {
   text-transform: capitalize;
 }
 
