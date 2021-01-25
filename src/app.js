@@ -1,6 +1,6 @@
 //Displays the current date and time
 function formatDate(timestamp) {
-  let date = new Date(timestamp);
+  let currentDate = new Date(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -12,23 +12,23 @@ function formatDate(timestamp) {
   ];
 
   let subHeading = document.querySelector("#day-time");
-  let day = days[date.getDay()];
-  let date = date.getDate();
-  let hours = date.getHours();
+  let day = days[currentDate.getDay()];
+  let date = currentDate.getDate();
+  let hours = currentDate.getHours();
   if (hours < 10) {
-    hours = `0 ${hours}`;
+    hours = `0${hours}`;
   }
 
-  let minutes = date.getMinutes();
+  let minutes = currentDate.getMinutes();
   if (minutes < 10) {
-    minutes = `0 ${minutes}`;
+    minutes = `0${minutes}`;
   }
 
   let formattedDate = `as of ${day} ${date}, ${hours}:${minutes}`;
   let p = document.querySelector("#day-time");
   p.innerHTML = subHeading.value;
 
-  return formattedDate;
+  return formattedDate ;
 }
 let updateDayTime = document.querySelector("#day-time");
 updateDayTime.innerHTML = formatDate();
@@ -63,16 +63,16 @@ function displayTemperature(response) {
   let dateElement = document.querySelector("#day-time");
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#degree");
-  let tempDescription = document.querySelector("#conditions");
-  let humidity = document.querySelector("#humidity-stat");
+  let tempDescription = document.querySelector("#conditions"); 
+  let humidity = document.querySelector("#humidity-stat"); 
   let wind = document.querySelector("#wind-stat");
   let icon = document.querySelector("#weather-icon");
-  cityElement.innerHTML = `${cityName}`;
-  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  cityElement.innerHTML = `${cityName}`; 
+  dateElement.innerHTML= formatDate(response.data.dt * 1000);
   currentTemp.innerHTML = `${temperature}`;
-  tempDescription.innerHTML = response.data.weather[0].description;
-  humidity.innerHTML = response.data.main.humidity;
-  wind.innerHTML = Math.round(response.data.wind.speed);
+  tempDescription.innerHTML = response.data.weather[0].description; 
+  humidity.innerHTML = response.data.main.humidity; 
+  wind.innerHTML = Math.round(response.data.wind.speed);  
   icon.setAttribute(".fas fa-cloud", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
