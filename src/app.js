@@ -1,6 +1,6 @@
 //Displays the current date and time
-function formatDate() {
-  let current = new Date();
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -12,14 +12,14 @@ function formatDate() {
   ];
 
   let subHeading = document.querySelector("#day-time");
-  let day = days[current.getDay()];
-  let date = current.getDate();
-  let hours = current.getHours();
+  let day = days[date.getDay()];
+  let date = date.getDate();
+  let hours = date.getHours();
   if (hours < 10) {
     hours = `0 ${hours}`;
   }
 
-  let minutes = current.getMinutes();
+  let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0 ${minutes}`;
   }
@@ -36,7 +36,7 @@ updateDayTime.innerHTML = formatDate();
 //Add a search engine, when searching for a city (i.e. Paris),
 //display the city name on the page after the user submits the form.
 
-function citySearch(event) {
+function handleSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#city-input");
   let h1 = document.querySelector("h1");
@@ -45,7 +45,7 @@ function citySearch(event) {
 }
 
 let citySearchForm = document.querySelector("#search-form");
-citySearchForm.addEventListener("submit", citySearch);
+citySearchForm.addEventListener("submit", handleSubmit);
 
 //Get your API key and save in a variable called apiKey
 //Get the API response for the weather using metrics unit
@@ -58,15 +58,22 @@ function searchCity(city) {
 
 //When searching for a city , display the current temperature of the city.
 function displayTemperature(response) {
+  let cityName = response.data.name;
+  let cityElement = document.querySelector("#city");
+  let dateElement = document.querySelector("#day-time");
   let temperature = Math.round(response.data.main.temp);
-  let currentTemp = document.querySelector(".degree");
-  currentTemp.innerHTML = `${temperature}`;
-  let tempDescription = document.querySelector(".currentForecast");
-  tempDescription.innerHTML = response.data.weather[0].description;
+  let currentTemp = document.querySelector("#degree");
+  let tempDescription = document.querySelector("#conditions");
   let humidity = document.querySelector("#humidity-stat");
-  humidity.innerHTML = response.data.main.humidity;
   let wind = document.querySelector("#wind-stat");
+  let icon = document.querySelector("#weather-icon");
+  cityElement.innerHTML = `${cityName}`;
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  currentTemp.innerHTML = `${temperature}`;
+  tempDescription.innerHTML = response.data.weather[0].description;
+  humidity.innerHTML = response.data.main.humidity;
   wind.innerHTML = Math.round(response.data.wind.speed);
+  icon.setAttribute(".fas fa-cloud", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
 //Add a Current Location button.
@@ -89,12 +96,12 @@ function requestPosition(position) {
 
 function showCurrentLocationTemp(response) {
   let locationName = response.data.name;
-  let currentCity = document.querySelector("h1");
+  let currentCity = document.querySelector("#city");
   currentCity.innerHTML = `${locationName}`;
   let localTemp = Math.round(response.data.main.temp);
-  let currentLocTemp = document.querySelector(".degree");
+  let currentLocTemp = document.querySelector("#degree");
   currentLocTemp.innerHTML = `${localTemp}`;
-  let tempDescription = document.querySelector(".currentForecast");
+  let tempDescription = document.querySelector("#conditions");
   tempDescription.innerHTML = response.data.weather[0].description;
   let humidity = document.querySelector("#humidity-stat");
   humidity.innerHTML = response.data.main.humidity;
