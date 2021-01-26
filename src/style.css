@@ -131,7 +131,15 @@ p.humidity {
 }
 
 p.wind {
-  padding-right: 111px;
+  padding-right: 115px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .units .active {
@@ -151,7 +159,7 @@ p.wind {
 .time {
   font-size: 17px;
   font-weight: 500;
-  line-height: 27px;
+  line-height: 1px;
 }
 
 .units {
@@ -160,11 +168,9 @@ p.wind {
 }
 
 #conditions {
-  font-size: 35px;
+  font-size: 19px;
   font-weight: 500;
-  line-height: 15px;
-  position: relative;
-  text-align: right;
+  line-height: 23px;
 }
 
 #conditions:first-letter {
