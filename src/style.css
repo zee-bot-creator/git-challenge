@@ -87,9 +87,9 @@ h5.card-title {
   line-height: 24px;
 }
 
-i.fas.fa-cloud {
-  color: #ffffff;
-  font-size: 100px;
+img.weather-symbol {
+  max-width: 100%;
+  height: auto;
 }
 
 i.fas.fa-cloud-sun-rain {
@@ -117,18 +117,6 @@ i.fas.fa-search {
   text-align: right;
 }
 
-#conditions {
-  font-size: 35px;
-  font-weight: 500;
-  line-height: 15px;
-  position: relative;
-  text-align: right;
-}
-
-#conditions:first-letter {
-  text-transform: capitalize;
-}
-
 p.humidity,
 p.wind {
   font-size: 17px;
@@ -146,6 +134,15 @@ p.wind {
   padding-right: 111px;
 }
 
+.units .active {
+  color: black;
+  cursor: default;
+}
+
+.units .active:hover {
+  text-decoration: none;
+}
+
 .magnifier-icon {
   background: none;
   border: none;
@@ -160,6 +157,18 @@ p.wind {
 .units {
   display: inherit;
   margin-top: 22px;
+}
+
+#conditions {
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 15px;
+  position: relative;
+  text-align: right;
+}
+
+#conditions:first-letter {
+  text-transform: capitalize;
 }
 
 #clickableAwesomeFont {
