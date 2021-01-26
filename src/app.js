@@ -67,13 +67,17 @@ function displayTemperature(response) {
   let humidity = document.querySelector("#humidity-stat"); 
   let wind = document.querySelector("#wind-stat");
   let icon = document.querySelector("#weather-icon");
+
+  celsiusTemp = response.data.main.temp;
+
   cityElement.innerHTML = `${cityName}`; 
   dateElement.innerHTML= formatDate(response.data.dt * 1000);
   currentTemp.innerHTML = `${temperature}`;
   tempDescription.innerHTML = response.data.weather[0].description; 
   humidity.innerHTML = response.data.main.humidity; 
   wind.innerHTML = Math.round(response.data.wind.speed);  
-  icon.setAttribute(".fas fa-cloud", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  icon.setAttribute("alt", response.data.weather[0].description);
 }
 
 //Add a Current Location button.
@@ -110,3 +114,34 @@ function showCurrentLocationTemp(response) {
 }
 let currentButton = document.querySelector(".current-location");
 currentButton.addEventListener("click", currentPosition);
+
+
+//Convert temperature from Celsius to Fahrenheit.
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let tempElement = document.querySelector("#degree");
+  tempElement.innerHTML = Math.round(celsiusTemp);
+}
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheit = Math.round(celsiusTemp * 1.8) + 32;
+  let tempElement = document.querySelector("#degree");
+  tempElement.innerHTML = fahrenheit;
+}
+
+let celsiusTemp = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+searchCity("Orlando");
