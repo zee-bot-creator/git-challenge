@@ -14,21 +14,11 @@ function formatDate(timestamp) {
   let subHeading = document.querySelector("#day-time");
   let day = days[currentDate.getDay()];
   let date = currentDate.getDate();
-  let hours = currentDate.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-
-  let minutes = currentDate.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  let formattedDate = `as of ${day} ${date}, ${hours}:${minutes}`;
+  let formattedDate = `as of ${day} ${date}, ${formatHours(timestamp)}`;
   let p = document.querySelector("#day-time");
   p.innerHTML = subHeading.value;
 
-  return formattedDate;
+  return formattedDate ;
 }
 let updateDayTime = document.querySelector("#day-time");
 updateDayTime.innerHTML = formatDate();
@@ -49,35 +39,88 @@ citySearchForm.addEventListener("submit", handleSubmit);
 
 //Get your API key and save in a variable called apiKey
 //Get the API response for the weather using metrics unit
+
 function searchCity(city) {
   let apiKey = "c2d9b90e33955a3023ce0c9c75586190";
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
-//When searching for a city , display the current temperature of the city.
+//When searching for a city, display the current temperature of the city
 function displayTemperature(response) {
   let cityName = response.data.name;
   let cityElement = document.querySelector("#city");
   let dateElement = document.querySelector("#day-time");
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#degree");
-  let tempDescription = document.querySelector("#conditions");
-  let humidity = document.querySelector("#humidity-stat");
+  let tempDescription = document.querySelector("#conditions"); 
+  let humidity = document.querySelector("#humidity-stat"); 
   let wind = document.querySelector("#wind-stat");
   let icon = document.querySelector("#weather-icon");
 
   celsiusTemp = response.data.main.temp;
 
-  cityElement.innerHTML = `${cityName}`;
-  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  cityElement.innerHTML = `${cityName}`; 
+  dateElement.innerHTML= formatDate(response.data.dt * 1000);
   currentTemp.innerHTML = `${temperature}`;
-  tempDescription.innerHTML = response.data.weather[0].description;
-  humidity.innerHTML = response.data.main.humidity;
-  wind.innerHTML = Math.round(response.data.wind.speed);
+  tempDescription.innerHTML = response.data.weather[0].description; 
+  humidity.innerHTML = response.data.main.humidity; 
+  wind.innerHTML = Math.round(response.data.wind.speed);  
   icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   icon.setAttribute("alt", response.data.weather[0].description);
+}
+
+
+function formatHours (timestamp) {
+ let currentDate = new Date(timestamp);
+ let hours = currentDate.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minutes = currentDate.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
+
+//When searching for a city, display the 3-hour forecast of the city
+function displayForecast (response) {
+let forecastElement = document.querySelector("#dailyForecast");
+forecastElement.innerHTML = null;
+let forecast = null;
+
+for (let index = 0 ; index <  5; index++) {
+forecast = response.data.list[index];
+forecastElement.innerHTML += `
+ <div class="col">
+          <div class="card-group">
+            <div class="card text-center">
+              <div class="card-body">
+                <h5 class="card-title">
+                  ${formatHours(forecast.dt * 1000)}
+                </h5>
+                <div class="forecast">
+                    ${Math.round(forecast.main.temp)}°
+                </div>
+                <div class="icon">
+                  <img src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" />
+                </div>
+                <div class="hi-low">      
+                    ${Math.round(forecast.main.temp_max)}° | ${Math.round(forecast.main.temp_min)}°          
+                </div>
+              </div>
+            </div>
+        </div>
+     </div>
+   `;
+}
 }
 
 //Add a Current Location button.
@@ -131,7 +174,7 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
-
+  
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let fahrenheit = Math.round(celsiusTemp * 1.8) + 32;
