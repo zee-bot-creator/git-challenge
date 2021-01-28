@@ -65,13 +65,6 @@ div.hi-low {
   line-height: 27px;
 }
 
-div.icon {
-  position: relative;
-  display: block;
-  font-size: 23px;
-  margin: 10px;
-}
-
 div.forecast {
   color: #1b4de4;
   display: block;
@@ -80,7 +73,7 @@ div.forecast {
   line-height: 30px;
 }
 
-h5.card-title {
+h5.card-time {
   color: #2b2b2b;
   font-size: 16px;
   font-weight: 400;
@@ -120,6 +113,10 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.icon img {
+  width: 55%;
 }
 
 .magnifier-icon {

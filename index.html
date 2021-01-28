@@ -18,60 +18,56 @@
   <div class="container">
     <div class="weather app-wrapper">
       <div class="weather-app">
-        <form id="search-form">
-          <div class="row align-items-center">
-            <div class="col">
-              <input type="search" id="city-input" placeholder="Enter a city" class="form-control" autofocus="on"
-                autocomplete="off" />
-            </div>
-            <div class="col-1">
-              <button type="submit" class="magnifier-icon">
-                <span id="clickableAwesomeFont"><i class="fas fa-search"></i></span>
-              </button>
-            </div>
-            <div class="col-1">
-              <button type="submit" class="current-location">
-                <span id="clickableLocationFont"><i class="fas fa-location-arrow"></i></span>
-              </button>
-            </div>
+      <form id="search-form">
+        <div class="row align-items-center">
+          <div class="col">
+            <input type="search" id="city-input" placeholder="Enter a city" class="form-control" autofocus="on" autocomplete="off" />
           </div>
-        </form>
-        <br />
-
-        <h1 id="city"></h1>
-
-        <p id="conditions"></p>
-
-        <p class="time" id="day-time"></p>
-
-        <p class="wind">
-          Wind: <span id="wind-stat"></span> km/h
-        </p>
-
-        <p class="humidity">
-          Humidity: <span id="humidity-stat"></span>%
-        </p>
-
-        <section class="subheader">
-          <h2><span id="degree"></span>
-            <span class="units"><a href="#" id="celsius-link" class="active">°C | <a href="#"
-                  id="fahrenheit-link">°F</a></span>
-          </h2>
-          <br />
-          <img src=" https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly_cloudy"
-            class="weather-symbol" id="weather-icon" />
-        </section>
-
-        <div>
-          <img src="illustration.svg" alt="" width="350">
+          <div class="col-1">
+            <button type="submit" class="magnifier-icon">
+              <span id="clickableAwesomeFont"><i class="fas fa-search"></i></span>
+            </button>
+          </div>
+          <div class="col-1">
+            <button type="submit" class="current-location">
+              <span id="clickableLocationFont"><i class="fas fa-location-arrow"></i></span>
+            </button>
+          </div>
         </div>
+      </form>
+      <br />
 
-        <div class="row" id="dailyForecast"></div>
+      <h1 id="city"></h1>
+
+      <p id="conditions"></p>
+
+      <p class="time" id="day-time"></p>
+
+      <p class="wind">
+        Wind:  <span id="wind-stat"></span> km/h
+      </p>
+
+      <p class="humidity">
+        Humidity:  <span id="humidity-stat"></span>%
+      </p>
+
+      <section class="subheader">
+        <h2><span id="degree"></span>
+          <span class="units"><a href="#" id="celsius-link" class="active">°C | <a href="#" id="fahrenheit-link">°F</a></span>
+        </h2>
+        <br />
+       <img src=" https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly_cloudy" class="weather-symbol" id="weather-icon" />         
+      </section>
+
+      <div>
+        <img src="illustration.svg" alt="" width="350">
+      </div>
+
+      <div class="row" id="dailyForecast"></div>
+  </div>
         <small>
           <a href="https://github.com/zee-bot-creator/weather-app" target="_blank">Open-source code</a> by Zenobia Dixon
         </small>
-      </div>
-
-      <script src="src/app.js"></script>
+  <script src="src/app.js"></script>
 </body>
 </html>
