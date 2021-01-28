@@ -21,7 +21,7 @@
         <form id="search-form">
           <div class="row align-items-center">
             <div class="col">
-              <input type="search" id="city-input" placeholder="City search" class="form-control" autofocus="on"
+              <input type="search" id="city-input" placeholder="Enter a city" class="form-control" autofocus="on"
                 autocomplete="off" />
             </div>
             <div class="col-1">
@@ -60,139 +60,18 @@
           <br />
           <img src=" https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly_cloudy"
             class="weather-symbol" id="weather-icon" />
-
         </section>
 
         <div>
           <img src="illustration.svg" alt="" width="350">
         </div>
 
-        <div class="row">
-          <div class="col">
-            <div class="card-group">
-              <div class="card text-center">
-                <div class="card-body">
-                  <h5 class="card-title">
-                    Mon
-                  </h5>
-                  <div class="tempForecast">
-                    <p class="card-text">
-                      75°
-                    </p>
-                  </div>
-                  <div class="icon">
-                    <i class="fas fa-cloud-sun-rain"></i>
-                  </div>
-                  <div class="celFahrenheit">
-                    <p class="card-text">
-                      15° | 25°
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">
-                  Tues
-                </h5>
-                <div class="tempForecast">
-                  <p class="card-text">
-                    75°
-                  </p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-cloud-showers-heavy"></i>
-                </div>
-                <div class="celFahrenheit">
-                  <p class="card-text">
-                    15° | 25°
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">
-                  Wed
-                </h5>
-                <div class="tempForecast">
-                  <p class="card-text">
-                    75°
-                  </p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-snowflake"></i>
-                </div>
-                <div class="celFahrenheit">
-                  <p class="card-text">
-                    15° | 25°
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">
-                  Thurs
-                </h5>
-                <div class="tempForecast">
-                  <p class="card-text">
-                    75°
-                  </p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-cloud-sun"></i>
-                </div>
-                <div class="celFahrenheit">
-                  <p class="card-text">
-                    15° | 25°
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">
-                  Fri
-                </h5>
-                <div class="tempForecast">
-                  <p class="card-text">
-                    75°
-                  </p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-sun"></i>
-                </div>
-                <div class="celFahrenheit">
-                  <p class="card-text">
-                    15° | 25°
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="row" id="dailyForecast"></div>
+        <small>
+          <a href="https://github.com/zee-bot-creator/weather-app" target="_blank">Open-source code</a> by Zenobia Dixon
+        </small>
       </div>
-      <small>
-        <a href="https://github.com/zee-bot-creator/weather-app" target="_blank">Open-source code</a> by Zenobia Dixon
-      </small>
-    </div>
 
-
-    <script src="src/app.js"></script>
+      <script src="src/app.js"></script>
 </body>
-
 </html>
