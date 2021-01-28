@@ -18,7 +18,7 @@ function formatDate(timestamp) {
   let p = document.querySelector("#day-time");
   p.innerHTML = subHeading.value;
 
-  return formattedDate ;
+  return formattedDate;
 }
 let updateDayTime = document.querySelector("#day-time");
 updateDayTime.innerHTML = formatDate();
@@ -36,6 +36,14 @@ function handleSubmit(event) {
 
 let citySearchForm = document.querySelector("#search-form");
 citySearchForm.addEventListener("submit", handleSubmit);
+
+//Clear the form after submit
+function clearForm (event) {
+  event.preventDefault(); 
+  document.getElementById("city-input").value = " ";
+}
+
+citySearchForm.addEventListener("submit", clearForm); 
 
 //Get your API key and save in a variable called apiKey
 //Get the API response for the weather using metrics unit
@@ -57,27 +65,27 @@ function displayTemperature(response) {
   let dateElement = document.querySelector("#day-time");
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#degree");
-  let tempDescription = document.querySelector("#conditions"); 
-  let humidity = document.querySelector("#humidity-stat"); 
+  let tempDescription = document.querySelector("#conditions");
+  let humidity = document.querySelector("#humidity-stat");
   let wind = document.querySelector("#wind-stat");
   let icon = document.querySelector("#weather-icon");
 
   celsiusTemp = response.data.main.temp;
 
-  cityElement.innerHTML = `${cityName}`; 
-  dateElement.innerHTML= formatDate(response.data.dt * 1000);
+  cityElement.innerHTML = `${cityName}`;
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   currentTemp.innerHTML = `${temperature}`;
-  tempDescription.innerHTML = response.data.weather[0].description; 
-  humidity.innerHTML = response.data.main.humidity; 
-  wind.innerHTML = Math.round(response.data.wind.speed);  
+  tempDescription.innerHTML = response.data.weather[0].description;
+  humidity.innerHTML = response.data.main.humidity;
+  wind.innerHTML = Math.round(response.data.wind.speed);
   icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   icon.setAttribute("alt", response.data.weather[0].description);
 }
 
 
-function formatHours (timestamp) {
- let currentDate = new Date(timestamp);
- let hours = currentDate.getHours();
+function formatHours(timestamp) {
+  let currentDate = new Date(timestamp);
+  let hours = currentDate.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
   }
@@ -90,20 +98,34 @@ function formatHours (timestamp) {
   return `${hours}:${minutes}`;
 }
 
-//When searching for a city, display the 3-hour forecast of the city
-function displayForecast (response) {
-let forecastElement = document.querySelector("#dailyForecast");
-forecastElement.innerHTML = null;
-let forecast = null;
+//Convert 24 hour time to 12 hour time format
+function convertToStandardTime(timestamp) {
+  let currentDate = new Date(timestamp);
+  let hours = currentDate.getHours();
+  let standard = hours - 12;
+  if (hours > 12) {
+    hours = `${standard}P.M.`;
+  }
+  if (hours <= 12) {
+    hours = `${standard}A.M.`;
+  }
+    return `${hours}:${minutes}`;
+}
 
-for (let index = 0 ; index <  5; index++) {
-forecast = response.data.list[index];
-forecastElement.innerHTML += `
+//When searching for a city, display the 3-hour forecast of the city
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#dailyForecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 5; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
  <div class="col">
           <div class="card-group">
             <div class="card text-center">
               <div class="card-body">
-                <h5 class="card-title">
+                <h5 class="card-time">
                   ${formatHours(forecast.dt * 1000)}
                 </h5>
                 <div class="forecast">
@@ -120,7 +142,7 @@ forecastElement.innerHTML += `
         </div>
      </div>
    `;
-}
+  }
 }
 
 //Add a Current Location button.
@@ -174,7 +196,7 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
-  
+
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let fahrenheit = Math.round(celsiusTemp * 1.8) + 32;
