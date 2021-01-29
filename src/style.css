@@ -40,7 +40,7 @@ section.subheader {
 }
 
 div.weather.app-wrapper {
-  margin: -230px 5px 15px 20px;
+  margin: 30px auto;
   width: 618px;
 }
 
@@ -113,28 +113,6 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-.appName,
-.copy {
-  color: #6c757d;
-  font-family: Segoe UI, Roboto, Oxygen;
-  position: relative;
-  text-align: right;
-}
-
-.appName {
-  margin-top: 50px;
-  font-size: 48px;
-  font-weight: 700;
-}
-
-.copy {
-  display: block;
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 33px;
-  margin: 16px 32px 32px 32px;
 }
 
 .icon img {
