@@ -38,12 +38,12 @@ let citySearchForm = document.querySelector("#search-form");
 citySearchForm.addEventListener("submit", handleSubmit);
 
 //Clear the form after submit
-function clearForm (event) {
-  event.preventDefault(); 
+function clearForm(event) {
+  event.preventDefault();
   document.getElementById("city-input").value = " ";
 }
 
-citySearchForm.addEventListener("submit", clearForm); 
+citySearchForm.addEventListener("submit", clearForm);
 
 //Get your API key and save in a variable called apiKey
 //Get the API response for the weather using metrics unit
@@ -82,34 +82,9 @@ function displayTemperature(response) {
   icon.setAttribute("alt", response.data.weather[0].description);
 }
 
-
 function formatHours(timestamp) {
   let currentDate = new Date(timestamp);
-  let hours = currentDate.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-
-  let minutes = currentDate.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  return `${hours}:${minutes}`;
-}
-
-//Convert 24 hour time to 12 hour time format
-function convertToStandardTime(timestamp) {
-  let currentDate = new Date(timestamp);
-  let hours = currentDate.getHours();
-  let standard = hours - 12;
-  if (hours > 12) {
-    hours = `${standard}P.M.`;
-  }
-  if (hours <= 12) {
-    hours = `${standard}A.M.`;
-  }
-    return `${hours}:${minutes}`;
+  return currentDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 }
 
 //When searching for a city, display the 3-hour forecast of the city
