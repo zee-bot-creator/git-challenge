@@ -30,20 +30,14 @@ function handleSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#city-input");
   let h1 = document.querySelector("h1");
-  h1.innerHTML = searchInput.value;
+  h1.innerHTML = searchInput.value.trim();
   searchCity(searchInput.value);
+  searchInput.value = " ";
 }
 
 let citySearchForm = document.querySelector("#search-form");
 citySearchForm.addEventListener("submit", handleSubmit);
 
-//Clear the form after submit
-function clearForm(event) {
-  event.preventDefault();
-  document.getElementById("city-input").value = " ";
-}
-
-citySearchForm.addEventListener("submit", clearForm);
 
 //Get your API key and save in a variable called apiKey
 //Get the API response for the weather using metrics unit
@@ -81,6 +75,7 @@ function displayTemperature(response) {
   icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   icon.setAttribute("alt", response.data.weather[0].description);
 }
+
 
 function formatHours(timestamp) {
   let currentDate = new Date(timestamp);
