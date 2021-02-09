@@ -146,6 +146,7 @@ function showCurrentLocationTemp(response) {
   humidity.innerHTML = response.data.main.humidity;
   let wind = document.querySelector("#wind-stat");
   wind.innerHTML = Math.round(response.data.wind.speed);
+  return displayForecast;
 }
 let currentButton = document.querySelector(".current-location");
 currentButton.addEventListener("click", currentPosition);
